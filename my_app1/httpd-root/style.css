@@ -1,4 +1,4 @@
-/*Селекторы элементов*/
+/*cелект элем*/
 body {
     background-color: #2C2F33;
     color: #FFFFFF;
@@ -24,32 +24,32 @@ table {
     width: 100%;
 }
 
-/*Каскадная таблица*/
+/*каск таблица*/
 .header {
     text-align: left;
 }
 
 .header h1 {
     font-family: fantasy;
-    font-size: 25px; /* Размер шрифта заголовка */
-    color: #8bc34a; /* Цвет шрифта заголовка */
+    font-size: 25px;
+    color: #8bc34a;
 }
 
 .header h3 {
     font-family: fantasy;
-    font-size: 20px; /* Размер шрифта заголовка */
-    color: white; /* Цвет шрифта заголовка */
+    font-size: 20px;
+    color: white;
 }
 
-/*Селекторы классов*/
+/*селект класс*/
 .container {
     gap: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
 
-    width: 80%; /* Уменьшаем масштаб контейнера */
-    margin: 0 auto; /* Центрируем контейнер */
+    width: 80%; /* масштаб контейнера */
+    margin: 0 auto; /* центр контейнер */
 }
 
 .left-block {
@@ -61,30 +61,30 @@ table {
     padding: 10px;
 }
 
-/*Селекторы идентификаторов*/
+/*селект идентифик*/
 #graph {
     width: 30%;
     padding: 10px;
-    left: 35%; /* Центрируем график */
+    left: 35%;
     align-content: center;
 }
 
 #radios {
     display: flex;
-    justify-content: center; /* Выравнивание радио-кнопок по центру */
+    justify-content: center;
 }
 
 #checks {
     display: flex;
-    justify-content: center; /* Выравнивание чек-кнопок по центру */
+    justify-content: center;
 }
 
-/* Комбинация селекторов */
+/* комбо селект*/
 #table th {
     background-color: #29362a;
 }
 
-/* Селекторы атрибутов */
+/* селект атрибут */
 input[type="text"] {
     justify-content: center;
     align-items: center;
@@ -98,10 +98,10 @@ input[type="text"] {
     color: #FFFFFF;
 }
 
-/* Каскадирование */
+/* каскад */
 h1.results{
     font-family: fantasy;
-    text-align: left;
+    text-align: center;
 }
 
 h2.headerOfTable{
