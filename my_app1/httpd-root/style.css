@@ -1,0 +1,115 @@
+/*Селекторы элементов*/
+body {
+    background-color: #2C2F33;
+    color: #FFFFFF;
+    text-align: center;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #8bc34a;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #8bc34a;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+/*Каскадная таблица*/
+.header {
+    text-align: left;
+}
+
+.header h1 {
+    font-family: fantasy;
+    font-size: 25px; /* Размер шрифта заголовка */
+    color: #8bc34a; /* Цвет шрифта заголовка */
+}
+
+.header h3 {
+    font-family: fantasy;
+    font-size: 20px; /* Размер шрифта заголовка */
+    color: white; /* Цвет шрифта заголовка */
+}
+
+/*Селекторы классов*/
+.container {
+    gap: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 80%; /* Уменьшаем масштаб контейнера */
+    margin: 0 auto; /* Центрируем контейнер */
+}
+
+.left-block {
+    padding: 10px;
+    left: 10%;
+}
+
+.right-block {
+    padding: 10px;
+}
+
+/*Селекторы идентификаторов*/
+#graph {
+    width: 30%;
+    padding: 10px;
+    left: 35%; /* Центрируем график */
+    align-content: center;
+}
+
+#radios {
+    display: flex;
+    justify-content: center; /* Выравнивание радио-кнопок по центру */
+}
+
+#checks {
+    display: flex;
+    justify-content: center; /* Выравнивание чек-кнопок по центру */
+}
+
+/* Комбинация селекторов */
+#table th {
+    background-color: #29362a;
+}
+
+/* Селекторы атрибутов */
+input[type="text"] {
+    justify-content: center;
+    align-items: center;
+
+    padding: 5%;
+    border: none;
+    border-radius: 5px;
+    width: 80%;
+    max-width: 300px;
+    background-color: #29362a;
+    color: #FFFFFF;
+}
+
+/* Каскадирование */
+h1.results{
+    font-family: fantasy;
+    text-align: left;
+}
+
+h2.headerOfTable{
+    font-family: fantasy;
+    text-align: center;
+}
+
+h4.input{
+    font-family: fantasy;
+    text-align: center;
+}
