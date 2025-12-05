@@ -1,4 +1,3 @@
-/* Базовые стили */
 * {
     margin: 0;
     padding: 0;
@@ -47,24 +46,21 @@ body {
     margin-right: 3%;
 }
 
-/* Поля ввода справа */
+/* Поля ввода */
 .input-container {
     flex: 0.8;
     padding: 0;
     margin-left: 5%;
-
 }
 
 .input-group {
     margin-bottom: 5%;
-
 }
 
 .input-group h4 {
     margin-bottom: 2%;
     font-size: 1em;
     color: #ffffff;
-
 }
 
 /* Горизонтальное расположение опций */
@@ -89,7 +85,6 @@ body {
     margin-right: 5%;
 }
 
-/* Поле ввода X */
 #xInput {
     width: 100%;
     padding: 2.5%;
@@ -124,7 +119,6 @@ body {
     border: 1px solid #4caf50;
 }
 
-/* Кнопки */
 .buttons {
     margin-top: 5%;
     display: flex;
@@ -165,4 +159,5 @@ h2 {
     color: #ffffff;
     font-size: 0.85em;
     background-color: #121212;
+
 }
