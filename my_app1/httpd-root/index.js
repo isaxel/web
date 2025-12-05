@@ -1,12 +1,11 @@
 "use strict";
 
-// Глобальные переменные
+
 let xVal = '';
 let x = -10;
 let y = 10;
 let rValues = [];
 
-// Функция для отправки запроса
 function sendRequest(x, y, r) {
     const url = new URL('./fcgi-bin/my_app.jar', window.location.href);
     url.searchParams.set('x', x);
@@ -27,7 +26,6 @@ function sendRequest(x, y, r) {
         });
 }
 
-// Функция для добавления строки в таблицу
 function addResultToTable(x, y, r, result) {
     const table = document.getElementById("resultsTable");
     const newRow = table.insertRow();
@@ -51,7 +49,6 @@ function addResultToTable(x, y, r, result) {
     saveDataToStorage();
 }
 
-// Функция для отображения ошибки в поле
 function showError(fieldId, message) {
     const errorElement = document.getElementById(fieldId);
     const errorText = errorElement.querySelector('.error-text');
@@ -73,7 +70,6 @@ function showError(fieldId, message) {
     }
 }
 
-// Функция для скрытия ошибки
 function hideError(fieldId) {
     const errorElement = document.getElementById(fieldId);
     errorElement.classList.add('hidden');
@@ -87,7 +83,6 @@ function hideError(fieldId) {
     }
 }
 
-// Функция для отображения общей ошибки формы
 function showFormError(message) {
     const errorElement = document.getElementById('formError');
     const errorText = errorElement.querySelector('.error-text');
@@ -102,14 +97,12 @@ function showFormError(message) {
     errorElement.classList.add('visible');
 }
 
-// Функция для скрытия общей ошибки формы
 function hideFormError() {
     const errorElement = document.getElementById('formError');
     errorElement.classList.add('hidden');
     errorElement.classList.remove('visible');
 }
 
-// Функция для очистки всех ошибок
 function clearErrors() {
     hideError('xError');
     hideError('yError');
@@ -201,7 +194,6 @@ function isEmptyString(str) {
     return !str || !str.trim();
 }
 
-// Функция сохранения данных в localStorage
 function saveDataToStorage() {
     const table = document.getElementById("resultsTable");
     const rows = table.rows;
@@ -222,7 +214,7 @@ function saveDataToStorage() {
     localStorage.setItem('resultsData', JSON.stringify(data));
 }
 
-// Функция загрузки данных из localStorage
+
 function loadDataFromStorage() {
     const savedData = localStorage.getItem('resultsData');
 
@@ -254,7 +246,7 @@ function loadDataFromStorage() {
     }
 }
 
-// Функция очистки таблицы
+
 function clearTable() {
     const table = document.getElementById("resultsTable");
 
@@ -264,7 +256,7 @@ function clearTable() {
 
     localStorage.removeItem('resultsData');
 
-    // Показываем сообщение об успехе через блок ошибки (с зеленым цветом)
+    // Cообщение об успехе через блок ошибки (с зеленым цветом)
     showFormError('Таблица успешно очищена');
     const formError = document.getElementById('formError');
     formError.classList.add('success');
@@ -279,7 +271,6 @@ function clearTable() {
 document.getElementById("getButton").onclick = async function () {
     clearErrors();
 
-    // Валидация всех полей
     const isXValid = validateX();
     const isYValid = validateY();
     const isRValid = validateR();
@@ -298,7 +289,6 @@ document.getElementById("getButton").onclick = async function () {
             addResultToTable(x, y, r, result);
         }
 
-        // Показываем сообщение об успехе
         showFormError(`Запросы успешно выполнены для ${rValues.length} значений R`);
         const formError = document.getElementById('formError');
         formError.classList.add('success');
@@ -320,13 +310,12 @@ document.getElementById("clearButton").onclick = function () {
     }
 };
 
-// Добавляем обработчики для скрытия ошибок при изменении значений
+// Cкрытия ошибок при изменении значений
 document.getElementById("xInput").addEventListener('input', function() {
     hideError('xError');
     hideFormError();
 });
 
-// Обработчики для радио-кнопок Y
 document.querySelectorAll('input[name="number"]').forEach(radio => {
     radio.addEventListener('change', function() {
         hideError('yError');
@@ -334,7 +323,6 @@ document.querySelectorAll('input[name="number"]').forEach(radio => {
     });
 });
 
-// Обработчики для чекбоксов R
 document.querySelectorAll('input[name="numberr"]').forEach(checkbox => {
     checkbox.addEventListener('change', function() {
         hideError('rError');
@@ -342,7 +330,7 @@ document.querySelectorAll('input[name="numberr"]').forEach(checkbox => {
     });
 });
 
-// Загрузка сохраненных данных при загрузке страницы
+// Загрузка сохраненных данных при перезагрузке страницы
 window.onload = function () {
     loadDataFromStorage();
 
@@ -358,4 +346,5 @@ window.onload = function () {
             check.checked = rValues.includes(check.value);
         }
     }
+
 };
