@@ -1,0 +1,161 @@
+<script src="/path/to/script.js"></script>
+Например, src="script.js" или src="./script.js" будет означать, что файл "script.js" находится в текущей папке.
+
+Если атрибут src установлен, содержимое тега script будет игнорироваться.
+В одном теге <script> нельзя использовать одновременно атрибут src и код внутри.
+
+Директива выглядит как строка: "use strict" или 'use strict'. Когда она находится в начале скрипта, весь сценарий работает в «современном» режиме.
+
+"use strict";
+
+
+let phrase = `Обратные кавычки позволяют встраивать переменные ${str}`;
+
+Чтобы вывести что-то на консоль из нашего кода, существует функция console.log.
+
+Например, это выводит в консоль значения от 0 до 4:
+// чтобы увидеть результат, сначала откройте консоль
+for (let i = 0; i < 5; i++) {
+  console.log("value,", i);
+}
+
+
+DOM (Document Object Model)
+
+Document Object Model, сокращённо DOM – объектная модель документа, которая представляет все содержимое страницы в виде объектов, которые можно менять.
+
+Объект document – основная «входная точка». С его помощью мы можем что-то создавать или менять на странице.
+
+
+
+
+
+
+
+"use strict";
+
+// список чис
+let xVal = '';
+let x = -10;
+let y = 10;
+let rValues = []; // массив для хранения нескольких значений R
+
+function sendRequest() {
+    // Отправляем запрос для каждого значения R
+    rValues.forEach(r => {
+        const url = new URL('./fcgi-bin/my_app.jar', window.location.href);
+        url.searchParams.set('x', x);
+        url.searchParams.set('y', y);
+        url.searchParams.set('r', r);
+
+        fetch(url.href, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Ошибка сети или сервера');
+                }
+                return response.text();
+            })
+            .then(result => {
+                const table = document.getElementById("resultsTable");
+                const newRow = table.insertRow(); // нов строка
+
+                // ячейки строки
+                const xCell = newRow.insertCell(0);
+                const yCell = newRow.insertCell(1);
+                const rCell = newRow.insertCell(2);
+                const answerCell = newRow.insertCell(3);
+                const executionTimeCell = newRow.insertCell(4);
+                const serverTimeCell = newRow.insertCell(5);
+
+                xCell.innerText = x;
+                yCell.innerText = y;
+                rCell.innerText = r;
+
+                const jsonResult = JSON.parse(result);
+                serverTimeCell.innerText = jsonResult.serverTime;
+                executionTimeCell.innerText = jsonResult.executionTime;
+                answerCell.innerText = jsonResult.answer ? "Входит" : "Не входит";
+            })
+            .catch(error => {
+                console.error("Ошибка: " + error.message);
+            });
+    });
+}
+
+function isEmptyString(str) {
+    return !str || !str.trim();
+}
+
+document.getElementById("getButton").onclick = async function () {
+    xVal = document.getElementById("xInput").value;
+    
+    // Обработка минусов в начале
+    if (xVal.includes('-') && xVal.startsWith('-')) {
+        xVal = '-' + xVal.replace(/-/g, '');
+    }
+    x = parseFloat(xVal.toString().replace(",", "."));
+    
+    // Получаем значение Y
+    const radios = document.getElementsByName('number');
+    for (const radio of radios) {
+        if (radio.checked) {
+            y = radio.value;
+            break;
+        }
+    }
+    
+    // Получаем ВСЕ выбранные значения R
+    const checks = document.getElementsByName('numberr');
+    rValues = []; // очищаем массив перед заполнением
+    for (const check of checks) {
+        if (check.checked) {
+            rValues.push(check.value);
+        }
+    }
+
+    if ("Notification" in window) {
+        Notification.requestPermission().then(permission => {
+            if (permission === "granted") {
+                if (isEmptyString(xVal) || isNaN(x) || x < -5 || x > 3) {
+                    const notification = new Notification("Некорректное значение для x", {
+                        body: "X должен быть числом от -5 до 3",
+                        icon: "URL_вашего_значка"
+                    });
+                    notification.onclick = () => {
+                        window.open("http://ваш_сайт.com");
+                    };
+                    return;
+                } else if (y === 10) {
+                    const notification = new Notification("Некорректное значение для y", {
+                        body: "Выберите одно из предложенных значений для Y",
+                        icon: "URL_вашего_значка"
+                    });
+                    notification.onclick = () => {
+                        window.open("http://ваш_сайт.com");
+                    };
+                    return;
+                } else if (rValues.length === 0) {
+                    const notification = new Notification("Некорректное значение для R", {
+                        body: "Выберите хотя бы одно из предложенных значений для R",
+                        icon: "URL_вашего_значка"
+                    });
+                    notification.onclick = () => {
+                        window.open("http://ваш_сайт.com");
+                    };
+                    return;
+                } else {
+                    sendRequest();
+                }
+            } else {
+                console.log("Разрешение на уведомления не получено.");
+            }
+        });
+    } else {
+        console.log("Ваш браузер не поддерживает уведомления.");
+    }
+}

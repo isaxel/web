@@ -11,6 +11,7 @@ import static isaxel.Response.*;
 
 public class Main {
     static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
     public static void main(String[] args) throws IOException {
         var fcgiInterface = new FCGIInterface();
         while (fcgiInterface.FCGIaccept() >= 0) {
@@ -18,6 +19,14 @@ public class Main {
             try {
                 var queryParams = System.getProperties().getProperty("QUERY_STRING");
                 var params = new Params(queryParams);
+
+                if (params.getR() <= 0) {
+                    throw new IllegalArgumentException("Значение R должно быть положительным");
+                }
+
+                if (params.getX() < -5 || params.getX() > 3) {
+                    throw new IllegalArgumentException("Значение X должно быть в диапазоне [-5, 3]");
+                }
 
                 boolean result = params.calculate();
                 var json = String.format(Response.RESULT_JSON,

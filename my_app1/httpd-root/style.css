@@ -1,115 +1,168 @@
-/*cелект элем*/
+/* Базовые стили */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-    background-color: #2C2F33;
-    color: #FFFFFF;
-    text-align: center;
+    background-color: #121212;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    padding: 2%;
 }
 
-button {
-    padding: 10px 20px;
-    margin: 10px;
-    border: none;
-    border-radius: 5px;
-    background-color: #8bc34a;
-    color: #FFFFFF;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #8bc34a;
-}
-
-table {
-    border-collapse: collapse;
-    width: 100%;
-}
-
-/*каск таблица*/
+/* Шапка */
 .header {
-    text-align: left;
+    font-family: fantasy;
+    font-size: 1.2em;
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: 3%;
+    padding: 2%;
 }
 
 .header h1 {
-    font-family: fantasy;
-    font-size: 25px;
-    color: #8bc34a;
+    font-size: 1.8em;
+    margin-bottom: 1%;
 }
 
 .header h3 {
-    font-family: fantasy;
-    font-size: 20px;
-    color: white;
+    font-size: 1em;
+    font-weight: normal;
 }
 
-/*селект класс*/
+/* Контейнер с графиком и полями ввода */
 .container {
-    gap: 20px;
+    display: flex;
+    margin-bottom: 3%;
+}
+
+/* График слева */
+.graph-container {
+    flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
-
-    width: 80%; /* масштаб контейнера */
-    margin: 0 auto; /* центр контейнер */
+    margin-right: 3%;
 }
 
-.left-block {
-    padding: 10px;
-    left: 10%;
+/* Поля ввода справа */
+.input-container {
+    flex: 0.8;
+    padding: 0;
+    margin-left: 5%;
+
 }
 
-.right-block {
-    padding: 10px;
+.input-group {
+    margin-bottom: 5%;
+
 }
 
-/*селект идентифик*/
-#graph {
-    width: 30%;
-    padding: 10px;
-    left: 35%;
-    align-content: center;
+.input-group h4 {
+    margin-bottom: 2%;
+    font-size: 1em;
+    color: #ffffff;
+
 }
 
-#radios {
+/* Горизонтальное расположение опций */
+.horizontal-options {
     display: flex;
-    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.5%;
 }
 
-#checks {
+.horizontal-options label {
     display: flex;
-    justify-content: center;
-}
-
-/* комбо селект*/
-#table th {
-    background-color: #29362a;
-}
-
-/* селект атрибут */
-input[type="text"] {
-    justify-content: center;
     align-items: center;
-
-    padding: 5%;
-    border: none;
-    border-radius: 5px;
-    width: 80%;
-    max-width: 300px;
-    background-color: #29362a;
-    color: #FFFFFF;
+    margin: 0.5% 0;
+    padding: 1%;
+    cursor: pointer;
+    white-space: nowrap;
+    font-size: 0.85em;
 }
 
-/* каскад */
-h1.results{
-    font-family: fantasy;
+.horizontal-options input[type="radio"],
+.horizontal-options input[type="checkbox"] {
+    margin-right: 5%;
+}
+
+/* Поле ввода X */
+#xInput {
+    width: 100%;
+    padding: 2.5%;
+    background-color: #1a1a1a;
+    color: #ffffff;
+    border: 1px solid #333;
+    font-size: 0.9em;
+}
+
+/* Блоки ошибок */
+.error-message {
+    padding: 1.5%;
+    margin-top: 1.5%;
+    background-color: #2a1a1a;
+    color: #ff6b6b;
+    border: 1px solid #ff6b6b;
+    display: none;
+    font-size: 0.85em;
+}
+
+.error-message.visible {
+    display: block;
+}
+
+.error-message.hidden {
+    display: none;
+}
+
+.error-message.success {
+    background-color: #1a2a1a;
+    color: #4caf50;
+    border: 1px solid #4caf50;
+}
+
+/* Кнопки */
+.buttons {
+    margin-top: 5%;
+    display: flex;
+    gap: 2%;
+}
+
+button {
+    padding: 2.5% 5%;
+    background-color: #333;
+    color: #ffffff;
+    border: 1px solid #555;
+    font-size: 0.9em;
+    flex: 1;
+}
+
+/* Таблица результатов */
+h2 {
+    font-size: 1.5em;
+    margin-bottom: 2%;
+    color: #ffffff;
     text-align: center;
 }
 
-h2.headerOfTable{
-    font-family: fantasy;
-    text-align: center;
+.table-container {
+    width: 100%;
 }
 
-h4.input{
-    font-family: fantasy;
+#resultsTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#resultsTable th,
+#resultsTable td {
+    border: 1px solid #333;
+    padding: 1%;
     text-align: center;
+    color: #ffffff;
+    font-size: 0.85em;
+    background-color: #121212;
 }

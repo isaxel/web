@@ -1,0 +1,115 @@
+/*cелект элем*/
+body {
+    background-color: #2C2F33;
+    color: #FFFFFF;
+    text-align: center;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #8bc34a;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #8bc34a;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+/*каск таблица*/
+.header {
+    text-align: left;
+}
+
+.header h1 {
+    font-family: fantasy;
+    font-size: 25px;
+    color: #8bc34a;
+}
+
+.header h3 {
+    font-family: fantasy;
+    font-size: 20px;
+    color: white;
+}
+
+/*селект класс*/
+.container {
+    gap: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 80%; /* масштаб контейнера */
+    margin: 0 auto; /* центр контейнер */
+}
+
+.left-block {
+    padding: 10px;
+    left: 10%;
+}
+
+.right-block {
+    padding: 10px;
+}
+
+/*селект идентифик*/
+#graph {
+    width: 30%;
+    padding: 10px;
+    left: 35%;
+    align-content: center;
+}
+
+#radios {
+    display: flex;
+    justify-content: center;
+}
+
+#checks {
+    display: flex;
+    justify-content: center;
+}
+
+/* комбо селект*/
+#table th {
+    background-color: #29362a;
+}
+
+/* селект атрибут */
+input[type="text"] {
+    justify-content: center;
+    align-items: center;
+
+    padding: 5%;
+    border: none;
+    border-radius: 5px;
+    width: 80%;
+    max-width: 300px;
+    background-color: #29362a;
+    color: #FFFFFF;
+}
+
+/* каскад */
+h1.results{
+    font-family: fantasy;
+    text-align: center;
+}
+
+h2.headerOfTable{
+    font-family: fantasy;
+    text-align: center;
+}
+
+h4.input{
+    font-family: fantasy;
+    text-align: center;
+}

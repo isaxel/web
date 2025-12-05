@@ -1,6 +1,5 @@
 package isaxel;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,7 +8,7 @@ class Params {
     private float y;
     private float r;
 
-    public Params(String query) throws IOException {
+    public Params(String query) {
         if (query != null && !query.isEmpty()) {
             var params = splitQuery(query);
             x = Float.parseFloat(params.get("x"));
@@ -53,4 +52,8 @@ class Params {
         }
         return true;
     }
+
+    public float getX() { return x; }
+    public float getY() { return y; }
+    public float getR() { return r; }
 }
