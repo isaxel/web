@@ -37,7 +37,7 @@ body {
     margin-bottom: 3%;
 }
 
-/* График слева */
+/* График */
 .graph-container {
     flex: 1;
     display: flex;
@@ -51,16 +51,19 @@ body {
     flex: 0.8;
     padding: 0;
     margin-left: 5%;
+
 }
 
 .input-group {
     margin-bottom: 5%;
+
 }
 
 .input-group h4 {
     margin-bottom: 2%;
     font-size: 1em;
     color: #ffffff;
+
 }
 
 /* Горизонтальное расположение опций */
@@ -159,5 +162,4 @@ h2 {
     color: #ffffff;
     font-size: 0.85em;
     background-color: #121212;
-
 }

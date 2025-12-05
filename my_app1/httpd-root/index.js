@@ -1,6 +1,5 @@
 "use strict";
 
-
 let xVal = '';
 let x = -10;
 let y = 10;
@@ -62,7 +61,7 @@ function showError(fieldId, message) {
     errorElement.classList.remove('hidden');
     errorElement.classList.add('visible');
 
-    // Добавляем класс ошибки к родительскому элементу
+    // Добавление ошибки к родительскому элементу
     const inputElement = errorElement.previousElementSibling ||
                         errorElement.parentElement.querySelector('input, #radios, #checks');
     if (inputElement) {
@@ -75,7 +74,7 @@ function hideError(fieldId) {
     errorElement.classList.add('hidden');
     errorElement.classList.remove('visible');
 
-    // Убираем класс ошибки с родительского элемента
+    // Удаление ошибки с родительского элемента
     const inputElement = errorElement.previousElementSibling ||
                         errorElement.parentElement.querySelector('input, #radios, #checks');
     if (inputElement) {
@@ -109,7 +108,7 @@ function clearErrors() {
     hideError('rError');
     hideFormError();
 
-    // Убираем классы ошибок со всех элементов
+    // Удаление ошибок со всех элементов
     document.querySelectorAll('.has-error').forEach(el => {
         el.classList.remove('has-error');
     });
@@ -214,7 +213,6 @@ function saveDataToStorage() {
     localStorage.setItem('resultsData', JSON.stringify(data));
 }
 
-
 function loadDataFromStorage() {
     const savedData = localStorage.getItem('resultsData');
 
@@ -246,7 +244,6 @@ function loadDataFromStorage() {
     }
 }
 
-
 function clearTable() {
     const table = document.getElementById("resultsTable");
 
@@ -256,7 +253,7 @@ function clearTable() {
 
     localStorage.removeItem('resultsData');
 
-    // Cообщение об успехе через блок ошибки (с зеленым цветом)
+    // Показываем сообщение об успехе через блок ошибки (с зеленым цветом)
     showFormError('Таблица успешно очищена');
     const formError = document.getElementById('formError');
     formError.classList.add('success');
@@ -283,7 +280,7 @@ document.getElementById("getButton").onclick = async function () {
     try {
         hideFormError();
 
-        // Отправляем запросы для каждого выбранного значения R
+        // Отправление запросов для каждого выбранного значения R
         for (const r of rValues) {
             const result = await sendRequest(x, y, r);
             addResultToTable(x, y, r, result);
@@ -303,7 +300,7 @@ document.getElementById("getButton").onclick = async function () {
     }
 };
 
-// Обработчик для кнопки очистки
+// Обработчик кнопки очистки - подтвеждение пользователя
 document.getElementById("clearButton").onclick = function () {
     if (confirm("Вы уверены, что хотите очистить таблицу?")) {
         clearTable();
@@ -346,5 +343,4 @@ window.onload = function () {
             check.checked = rValues.includes(check.value);
         }
     }
-
 };
