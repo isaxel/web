@@ -136,7 +136,12 @@ Access-Control-Allow-Headers: Content-Type
 
 ## 8. ECMAScript (ES) и новые возможности
 
-**ECMAScript** — стандарт, на котором основан JavaScript.
+**ECMAScript** — стандарт, на котором основан JavaScript. Встраиваемый расширяемый не имеющий
+средств ввода/вывода язык программирования.
+● 5 примитивных типов данных — Number, String,
+Boolean, Null и Undefned.
+● Объектный тип данных — Object.
+● 15 различных видов инструкций.
 
 **ES6 (ES2015):**
 - `let` и `const` (блочная область видимости).
