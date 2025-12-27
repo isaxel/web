@@ -1,0 +1,231 @@
+body {
+    font-family: 'Segoe UI', Roboto;
+    background-color: #121212;
+    color: #ffffff;
+    margin: 0;
+    padding: 20px;
+}
+
+.result-container {
+    width: 500px;
+    margin: auto;
+    background-color: #1e1e1e;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.result-container h2 {
+    text-align: center;
+    color: #ffffff;
+}
+
+main a {
+    display: block;
+    text-align: center;
+    color: #bb86fc;
+    text-decoration: none;
+    margin-top: 20px;
+    font-weight: 500;
+}
+
+main a:hover {
+    text-decoration: underline;
+    color: #d0b9ff;
+}
+
+.result-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    color: #ffffff;
+}
+
+.result-table td {
+    padding: 12px 8px;
+    border-bottom: 1px solid #333;
+}
+
+.result-table tr:last-child td {
+    border-bottom: none;
+}
+
+.result-table td:first-child {
+    font-weight: bold;
+    color: #e0e0e0;
+    width: 40%;
+}
+
+.result-table td:nth-child(2) {
+    padding-left: 10px;
+    color: #ffffff;
+    width: 60%;
+}
+
+.result-table a {
+    color: #bb86fc;
+    text-decoration: none;
+}
+
+.result-table a:hover {
+    text-decoration: underline;
+}
+
+h2 {
+    text-align: center;
+    color: #ffffff;
+}
+
+header {
+    margin: 20px;
+    padding: 10px;
+    text-align: center;
+    background-color: #1e1e1e;
+    color: #ffffff;
+    border-radius: 8px;
+}
+
+main {
+    display: grid;
+    grid-template-columns: 2fr 3fr 3fr;
+    gap: 20px;
+    align-items: start;
+}
+
+.form-container, .graph-container, .results-container {
+    background-color: #1e1e1e;
+    padding: 25px;
+    border-radius: 8px;
+    color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.graph-wrapper svg {
+    display: block;
+    margin: auto;
+}
+
+.graph-wrapper svg text {
+    pointer-events: none;
+    user-select: none;
+    fill: #ffffff;
+}
+
+.results-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.table-container {
+    height: 800px;
+    overflow-y: auto;
+}
+
+.results-container table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+    color: #ffffff;
+}
+
+.results-container th,
+.results-container td {
+    padding: 12px;
+    border: 1px solid #333;
+}
+
+.results-container th {
+    background-color: #252525;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.results-container tbody tr:nth-child(even) {
+    background-color: #252525;
+}
+
+.results-container thead th:nth-child(1),
+.results-container thead th:nth-child(2),
+.results-container thead th:nth-child(3),
+.results-container thead th:nth-child(4),
+.results-container thead th:nth-child(6) {
+    width: 15%;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    color: #ffffff;
+}
+
+.form-group label {
+    margin-bottom: 8px;
+    color: #e0e0e0;
+}
+
+#y-input {
+    width: 50%;
+    background-color: #252525;
+    color: #ffffff;
+    border: 1px solid #444;
+    padding: 8px;
+    border-radius: 4px;
+}
+
+#submit-button {
+    align-items: center;
+}
+
+.error-message {
+    color: #ff6b6b;
+    font-size: 13px;
+    min-height: 18px;
+    margin-top: 5px;
+}
+
+#submit-button {
+    display: block;
+    width: 50%;
+    margin: 10px auto;
+    padding: 10px;
+    background-color: #2e7d32;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#submit-button:hover {
+    background-color: #1b5e20;
+}
+
+
+.table-container::-webkit-scrollbar {
+    width: 10px;
+}
+
+.table-container::-webkit-scrollbar-track {
+    background: #252525;
+    border-radius: 4px;
+}
+
+.table-container::-webkit-scrollbar-thumb {
+    background: #444;
+    border-radius: 4px;
+}
+
+.table-container::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+input, select, textarea {
+    background-color: #252525;
+    color: #ffffff;
+    border: 1px solid #444;
+    border-radius: 4px;
+    padding: 8px;
+}

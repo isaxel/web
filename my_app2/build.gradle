@@ -1,0 +1,37 @@
+plugins {
+    id 'java'
+    id 'war'
+}
+
+group = 'isaxel'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'com.google.code.gson:gson:2.11.0'
+
+    compileOnly 'org.projectlombok:lombok:1.18.32'
+    annotationProcessor 'org.projectlombok:lombok:1.18.32'
+
+
+    providedCompile 'jakarta.platform:jakarta.jakartaee-api:8.0.0'
+    implementation 'javax.servlet:jstl:1.2'
+
+    compileOnly('jakarta.validation:jakarta.validation-api:3.1.0')
+    compileOnly('jakarta.enterprise:jakarta.enterprise.cdi-api:4.1.0')
+    compileOnly('jakarta.json.bind:jakarta.json.bind-api:3.0.1')
+    compileOnly('jakarta.servlet:jakarta.servlet-api:6.1.0')
+    compileOnly('jakarta.ejb:jakarta.ejb-api:4.0.1')
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+war {
+    // Имя итогового файла
+    archiveFileName = 'my_app2.war'
+}
