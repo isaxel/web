@@ -12,6 +12,7 @@ const centerY = 250;
 let selectedR = 0;
 const ONE_UNIT_PX = 47;
 let currentR = 0;
+
 const labels = {
     x: {
         r: document.getElementById('label-x-r'),
@@ -26,11 +27,23 @@ const labels = {
         negR: document.getElementById('label-y-neg-r'),
     }
 };
+
 document.addEventListener('DOMContentLoaded', () => {
-    selectedR = getLastHistoryR();
-    updateGraph(getLastHistoryR());
-    drawHistoryPoints(window.historyPoints, getLastHistoryR());
-    setupDynamicR();
+    currentR = parseFloat(window.lastR) || 0;
+    if (isNaN(currentR)) currentR = 0;
+
+    updateGraph(currentR);
+    drawHistoryPoints(window.historyPoints, currentR);
+
+    const rRadios = document.querySelectorAll('input[name="r"]');
+    rRadios.forEach(radio => {
+        radio.addEventListener('change', () => {
+            currentR = parseFloat(radio.value);
+            updateGraph(currentR);
+            drawHistoryPoints(window.historyPoints, currentR);
+        });
+    });
+
     setupGraphInteractive();
 });
 
@@ -191,9 +204,14 @@ function getSelectedR() {
     return selectedR;
 }
 
+
 function setupGraphInteractive() {
-    svg.addEventListener('click', even => {
-        if(currentR <= 0) return;
+    svg.addEventListener('click', event => {
+        if (currentR <= 0) {
+            alert("Сначала выберите радиус R!");
+            return;
+        }
+
         const svgRect = svg.getBoundingClientRect();
         const clickX_px = event.clientX - svgRect.left;
         const clickY_px = event.clientY - svgRect.top;
@@ -201,13 +219,35 @@ function setupGraphInteractive() {
         const mathX = (clickX_px - centerX) / ONE_UNIT_PX;
         const mathY = (centerY - clickY_px) / ONE_UNIT_PX;
 
+        const allowedX = [-5, -4, -3, -2, -1, 0, 1, 2, 3];
+        let roundedX = allowedX[0];
+        let minDiff = Math.abs(allowedX[0] - mathX);
 
-        const fullUrl = new URL(form.getAttribute("action"), window.location.origin);
-        if(mathX >= -5 && mathX <= 5 && mathY >= -4 && mathY <= 4) {
-            fullUrl.searchParams.set('x', mathX);
-            fullUrl.searchParams.set('y', mathY);
-            fullUrl.searchParams.set('r', currentR);
-            window.location.href = fullUrl.toString();
+        for (let i = 1; i < allowedX.length; i++) {
+            const diff = Math.abs(allowedX[i] - mathX);
+            if (diff < minDiff) {
+                minDiff = diff;
+                roundedX = allowedX[i];
+            }
         }
+
+        const roundedY = Math.round(mathY * 1000) / 1000;
+
+        const form = document.getElementById('check-form');
+
+        const xSelect = form.querySelector('select[name="x"]');
+        xSelect.value = roundedX;
+
+        const yInput = form.querySelector('input[name="y"]');
+        yInput.value = roundedY;
+
+        const rRadios = form.querySelectorAll('input[name="r"]');
+        rRadios.forEach(radio => {
+            if (Math.abs(parseFloat(radio.value) - currentR) < 0.001) {
+                radio.checked = true;
+            }
+        });
+
+        form.submit();
     });
 }

@@ -139,6 +139,5 @@
         window.lastR = '${lastR}';
     </script>
     <script type="module" src="${pageContext.request.contextPath}/js/graph-handler.js"></script>
-    <script type="module" src="${pageContext.request.contextPath}/js/cache-handler.js"></script>
 </body>
 </html>
