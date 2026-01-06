@@ -55,25 +55,6 @@ export function updateHistory(history, R) {
     drawHistoryPoints(history, Number(R));
 }
 
-/*
-export function updateHistory1(history) {
-    drawHistoryPoints(history, getSelectedR());
-}
-*/
-/*
-export function updateNowHistory(history) {
-    window.historyPoints = history;
-}
-*/
-/*
-function getLastHistoryR() {
-    let R = 0;
-    if(historyPoints != null && historyPoints.length > 0) {
-        R = parseFloat((historyPoints[historyPoints.length-1].r).replace(',', '.'));
-    }
-    return R;
-}
-*/
 function drawShapes(R) {
     if(R <= 0) {
         rect.setAttribute('visibility', 'hidden');
@@ -178,30 +159,6 @@ function updateLabels(R) {
     labels.y.negRHalf.setAttribute('y', centerY + r_half_px + 5);
     labels.y.negR.setAttribute('y', centerY + r_px + 5);
 }
-/*
-function setupDynamicR(){
-    document.getElementById("r-radio")
-        .addEventListener('click', (event) => {
-            const clickedElement = event.target;
-            if (clickedElement.tagName !== 'BUTTON') return;
-            const isSelected = clickedElement.classList.contains("selected");
-            if(isSelected) {
-                let R = parseFloat((clickedElement.dataset.value).replace('.',','));
-                updateHistory(window.historyPoints, R);
-                updateGraph(R);
-                selectedR = R;
-            } else {
-                updateGraph(0);
-                updateHistory(window.historyPoints, 0);
-                selectedR = 0;
-            }
-        }, true);
-}
-
-function getSelectedR() {
-    return selectedR;
-}
-*/
 
 function setupGraphInteractive() {
     svg.addEventListener('click', event => {
