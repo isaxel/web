@@ -18,33 +18,26 @@ public class AreaCheckServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+        HttpSession session = req.getSession();
+
+        String xStr = (String) session.getAttribute("pendingX");
+        String yStr = (String) session.getAttribute("pendingY");
+        String rStr = (String) session.getAttribute("pendingR");
+
+        session.removeAttribute("pendingX");
+        session.removeAttribute("pendingY");
+        session.removeAttribute("pendingR");
+
         try {
             long startTime = System.nanoTime();
-            String xStr = req.getParameter("x");
-            String yStr = req.getParameter("y");
-            String rStr = req.getParameter("r");
-
-            if (xStr == null || yStr == null || rStr == null) {
-                req.setAttribute("error", "Не переданы обязательные параметры");
-                getServletContext().getRequestDispatcher("/error.jsp").forward(req, resp);
-                return;
-            }
-
             double x = Double.parseDouble(xStr.replace(",", "."));
             double y = Double.parseDouble(yStr.replace(",", "."));
             double r = Double.parseDouble(rStr.replace(",", "."));
-
-            if (!isValid(x, y, r)) {
-                req.setAttribute("error", "Переданы некорректные параметры");
-                getServletContext().getRequestDispatcher("/error.jsp").forward(req, resp);
-                return;
-            }
 
             boolean isHit = checkHit(x, y, r);
             long executionTime = System.nanoTime() - startTime;
             CheckData result = new CheckData(x, y, r, isHit, executionTime);
 
-            HttpSession session = req.getSession();
             List<CheckData> results = (List<CheckData>) session.getAttribute("results");
             if (results == null) {
                 results = new ArrayList<>();
@@ -52,12 +45,11 @@ public class AreaCheckServlet extends HttpServlet {
             results.add(result);
             session.setAttribute("results", results);
 
-            session.setAttribute("lastX", xStr);
-            session.setAttribute("lastY", yStr);
-            session.setAttribute("lastR", rStr);
+            session.setAttribute("lastResult", result);
 
-            req.setAttribute("result", result);
-            getServletContext().getRequestDispatcher("/result.jsp").forward(req, resp);
+            // REDIRECT на отдельный URL с результатами
+            resp.sendRedirect(req.getContextPath() + "/result");
+
         } catch (NumberFormatException e) {
             req.setAttribute("error", "Ошибка при преобразовании параметров: " + e.getMessage());
             getServletContext().getRequestDispatcher("/error.jsp").forward(req, resp);
@@ -74,11 +66,5 @@ public class AreaCheckServlet extends HttpServlet {
         if (x > 0 && y < 0) return x <= r && y >= -r / 2;
         if (x < 0 && y > 0) return y <= x + r / 2;
         return false;
-    }
-
-    private boolean isValid(double x, double y, double r) {
-        return (x >= -5 && x <= 3) &&
-                (y >= -5 && y <= 3) &&
-                (r >= 1 && r <= 5);
     }
 }

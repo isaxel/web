@@ -1,15 +1,12 @@
 package isaxel.servlets;
 
 import com.google.gson.Gson;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-
-import isaxel.data.CheckData;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -18,9 +15,10 @@ import java.util.List;
 import java.util.Set;
 import java.util.HashSet;
 
+import isaxel.data.CheckData;
+
 @WebServlet(urlPatterns = "")
 public class ControllerServlet extends HttpServlet {
-
     private Gson gson = new Gson();
     private static final Set<Double> ALLOWED_R = new HashSet<>();
 
@@ -40,21 +38,28 @@ public class ControllerServlet extends HttpServlet {
 
         HttpSession session = req.getSession();
 
-        if (xStr != null && yStr != null && rStr != null) {
-            session.setAttribute("lastX", xStr);
-            session.setAttribute("lastY", yStr);
-            session.setAttribute("lastR", rStr);
+        if (xStr != null) session.setAttribute("lastX", xStr);
+        if (yStr != null) session.setAttribute("lastY", yStr);
+        if (rStr != null) session.setAttribute("lastR", rStr);
+
+        if (xStr != null || yStr != null || rStr != null) {
+            session.setAttribute("pendingX", xStr);
+            session.setAttribute("pendingY", yStr);
+            session.setAttribute("pendingR", rStr);
 
             String error = validateParameters(xStr, yStr, rStr);
             if (error != null) {
+                session.removeAttribute("pendingX");
+                session.removeAttribute("pendingY");
+                session.removeAttribute("pendingR");
+
                 req.setAttribute("error", error);
                 getServletContext().getRequestDispatcher("/error.jsp").forward(req, resp);
                 return;
             }
 
             getServletContext().getRequestDispatcher("/checkServlet").forward(req, resp);
-        }
-        else {
+        } else {
             showMainPage(req, resp);
         }
     }
@@ -91,7 +96,6 @@ public class ControllerServlet extends HttpServlet {
 
     private void showMainPage(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
-
         List<CheckData> results = (List<CheckData>) session.getAttribute("results");
         if (results == null) {
             results = new ArrayList<>();

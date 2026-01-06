@@ -1,6 +1,3 @@
-import { requestApi } from './cache-handler.js';
-
-
 const labelsGroup = document.getElementById('labels');
 const rect = document.getElementById('graph-rect');
 const polygon = document.getElementById('graph-polygon');
@@ -58,16 +55,17 @@ export function updateHistory(history, R) {
     drawHistoryPoints(history, Number(R));
 }
 
-
+/*
 export function updateHistory1(history) {
     drawHistoryPoints(history, getSelectedR());
 }
-
-
+*/
+/*
 export function updateNowHistory(history) {
     window.historyPoints = history;
 }
-
+*/
+/*
 function getLastHistoryR() {
     let R = 0;
     if(historyPoints != null && historyPoints.length > 0) {
@@ -75,7 +73,7 @@ function getLastHistoryR() {
     }
     return R;
 }
-
+*/
 function drawShapes(R) {
     if(R <= 0) {
         rect.setAttribute('visibility', 'hidden');
@@ -180,7 +178,7 @@ function updateLabels(R) {
     labels.y.negRHalf.setAttribute('y', centerY + r_half_px + 5);
     labels.y.negR.setAttribute('y', centerY + r_px + 5);
 }
-
+/*
 function setupDynamicR(){
     document.getElementById("r-radio")
         .addEventListener('click', (event) => {
@@ -203,7 +201,7 @@ function setupDynamicR(){
 function getSelectedR() {
     return selectedR;
 }
-
+*/
 
 function setupGraphInteractive() {
     svg.addEventListener('click', event => {
