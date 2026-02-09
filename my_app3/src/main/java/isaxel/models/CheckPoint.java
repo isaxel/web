@@ -14,7 +14,7 @@ import java.util.Date;
 @Data
 @Entity
 @NoArgsConstructor
-@Table(name = "checkPoint")
+@Table(name = "checkpoint")
 public class CheckPoint implements Serializable {
     @Id
     @GeneratedValue
@@ -41,5 +41,11 @@ public class CheckPoint implements Serializable {
 
         timestamp = new Date(System.currentTimeMillis());
         executionTime = System.nanoTime() - now;
+    }
+    public boolean getIsInside() {
+        return isInside;
+    }
+    public void setIsInside(boolean isInside) {
+        this.isInside = isInside;
     }
 }

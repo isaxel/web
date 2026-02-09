@@ -49,7 +49,7 @@ public class DBCommunicator implements Serializable {
         var transaction = manager.getTransaction();
         try {
             transaction.begin();
-            var res = new ArrayList<>(manager.createQuery("select p from Point p", CheckPoint.class).getResultList());
+            var res = new ArrayList<>(manager.createQuery("select p from CheckPoint p", CheckPoint.class).getResultList());
             transaction.commit();
             return res;
         } catch (Exception e) {
@@ -60,8 +60,10 @@ public class DBCommunicator implements Serializable {
 
     public void clearAll() {
         var transaction = manager.getTransaction();
+
+
         transaction.begin();
-        manager.createQuery("delete from Point p").executeUpdate();
+        manager.createQuery("delete from CheckPoint p").executeUpdate();
         transaction.commit();
     }
 }

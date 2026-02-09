@@ -2,41 +2,87 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="jakarta.faces.html"
-      xmlns:ui="jakarta.faces.facelets"
-      xmlns:f="jakarta.faces.core"
-      xmlns:p="primefaces">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+<!--      xmlns:h="jakarta.faces.html"-->
+<!--      xmlns:ui="jakarta.faces.facelets"-->
+<!--      xmlns:f="jakarta.faces.core"-->
+
+
 <f:view contentType="text/html;charset=UTF-8" encoding="UTF-8">
+
     <h:head>
         <title>Лаба3</title>
 
         <meta name="msapplication-TileColor" content="#da532c"/>
         <meta name="theme-color" content="#ffffff"/>
 
-        <link rel="stylesheet" href="css/style.css"/>
+        <link rel="stylesheet" href="resources/css/style.css"/>
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
+
+        <script type="text/javascript" src="#{request.contextPath}/jakarta.faces.resource/jquery/jquery.js.xhtml?ln=primefaces&amp;v=14.0.5"></script>
+        <script type="text/javascript" src="#{request.contextPath}/jakarta.faces.resource/jquery/jquery-plugins.js.xhtml?ln=primefaces&amp;v=14.0.5"></script>
+        <script type="text/javascript" src="#{request.contextPath}/jakarta.faces.resource/core.js.xhtml?ln=primefaces&amp;v=14.0.5"></script>
+        <script type="text/javascript" src="#{request.contextPath}/jakarta.faces.resource/components.js.xhtml?ln=primefaces&amp;v=14.0.5"></script>
+
+        <h:outputScript library="js" name="script.js"/>
     </h:head>
     <h:body>
+
         <div class="content">
             <div class="results-content">
                 <div style="padding: 1rem">
-                    <h:button type="button" class="round confirm-colors material-icons" outcome="toIndex"
+                    <h:button type="button"
+                              class="round confirm-colors material-icons"
+                              outcome="toIndex"
                               value="arrow_back_ios_new"/>
+<!--                    <div id="click_catcher" style="width: 300px; height: 300px; position: relative;">-->
+<!--                        <svg height="300" width="300" xmlns="http://www.w3.org/2000/svg" id="graph"-->
+<!--                             class="shadow-graph" style="pointer-events: none">-->
+<!--                            &lt;!&ndash; Треугольник (фигура 1) &ndash;&gt;-->
+<!--                            <polygon fill="mediumspringgreen" fill-opacity="0.3"-->
+<!--                                     points="150,250 200,150 150,150" id="figure1"/>-->
+
+<!--                            &lt;!&ndash; Прямоугольник (фигура 2) &ndash;&gt;-->
+<!--                            <polygon fill="mediumspringgreen" fill-opacity="0.3"-->
+<!--                                     points="150,50 150,150 200,150 200,50" id="figure2"/>-->
+
+<!--                            &lt;!&ndash; Круг (фигура 3) &ndash;&gt;-->
+<!--                            <path d="M 50 150 L 150 150 L 150 50 C 100 50 50 100 50 150 Z"-->
+<!--                                  fill="mediumspringgreen" fill-opacity="0.3" id="figure3"/>-->
+
+<!--                            &lt;!&ndash; Оси координат &ndash;&gt;-->
+<!--                            <line stroke="rgb(174, 193, 187)" x1="10" x2="290" y1="150" y2="150"-->
+<!--                                  stroke-width="5" stroke-linecap="round"/>-->
+<!--                            <line stroke="rgb(174, 193, 187)" x1="150" x2="150" y1="10" y2="290"-->
+<!--                                  stroke-width="5" stroke-linecap="round"/>-->
+
+<!--                            &lt;!&ndash; Стрелки &ndash;&gt;-->
+<!--                            <polygon fill="rgb(174, 193, 187)" points="150,0 140,15 160,15"/>-->
+<!--                            <polygon fill="rgb(174, 193, 187)" points="300,150 285,160 285,140"/>-->
+<!--                        </svg>-->
+<!--                    </div>-->
                     <div id="click_catcher">
-                        <ui:include src="assets/graph.svg"/>
+                        <ui:include src="resources/assets/graph.svg"/>
                     </div>
                     <h:form id="main-form">
                         <div class="form-inputs">
                             <div>
                                 <p>Введите X (-5 ... 5):</p>
                                 <div>
-                                    <p:spinner min="-5" max="5" styleClass="spinner text-input invert-colors"
-                                               value="#{beanCalculator.x}" stepFactor="1">
+                                    <p:spinner min="-5"
+                                               max="5"
+                                               stepFactor="1"
+                                               styleClass="spinner text-input invert-colors"
+                                               value="#{beanCalculator.x}">
                                         <f:validateRequired/>
                                         <f:validateDoubleRange minimum="-5" maximum="5"/>
                                     </p:spinner>
                                 </div>
                             </div>
+
                             <div>
                                 <p>Введите Y (-5 ... 5):</p>
                                 <div>
@@ -45,38 +91,54 @@
                                         <f:validateRequired/>
                                         <f:validateDoubleRange minimum="-5" maximum="5"/>
                                     </h:inputText>
-                                </div>
+                                </div>>
                             </div>
                             <div>
                                 <p>Введите R:</p>
                                 <h:panelGrid columns="1">
-                                    <h:inputText id="options" value="#{beanCalculator.r}">
-                                        <f:validateDoubleRange minimum="2" maximum="5"/>
-                                        <f:validateRequired/>
-                                    </h:inputText>
-                                    <p:slider id="superSlider" for="options" minValue="2" maxValue="5" step="0.1" style="width: 100%" onSlide="handleSlide(event)" >
-                                        <f:validateRequired/>
-                                        <f:validateDoubleRange minimum="2" maximum="5"/>
+                                    <h:inputText id="optioins"
+                                                 value="#{beanCalculator.r}"/>
+                                    <p:slider for="@previous"
+                                              id="superSlider"
+                                              widgetVar="superSlider"
+                                              minValue="2"
+                                              maxValue="5"
+                                              step="0.1"
+                                              style="width: 100%"
+                                              onSlide="handleSlide(event)">
                                     </p:slider>
                                 </h:panelGrid>
                             </div>
+
                             <div class="form-buttons">
-                                <h:commandButton class="round confirm-colors material-icons"
-                                                 id="btn_cfrm" value="send" action="#{beanCalculator.calc()}"
-                                />
-                                <h:commandButton class="round reset-colors material-icons"
-                                                 id="btn_rst" value="backspace" action="#{beanCalculator.reset()}"
-                                />
-                            </div></div>
+                                <h:commandButton id="btn_cfrm"
+                                                 class="round confirm-colors material-icons"
+                                                 value="send"
+                                                 action="#{beanCalculator.calc()}"/>
+
+                                <h:commandButton id="btn_rst"
+                                                 class="round reset-colors material-icons"
+                                                 value="backspace"
+                                                 action="#{beanCalculator.reset()}"/>
+                            </div>
+
+                        </div>
                     </h:form>
                     <h:form id="hidden-form">
-                        <h:inputHidden value="#{beanCalculator.x}" id="graph-x"/>
-                        <h:inputHidden value="#{beanCalculator.y}" id="graph-y"/>
-                        <h:inputHidden value="#{beanCalculator.r}" id="graph-r"/>
-                        <h:commandButton id="graph-send" action="#{beanCalculator.calc()}" style="opacity: 0"/>
-                    </h:form></div>
+                        <h:inputHidden id="graph-x" value="#{beanCalculator.x}"/>
+                        <h:inputHidden id="graph-y" value="#{beanCalculator.y}"/>
+                        <h:inputHidden id="graph-r" value="#{beanCalculator.r}"/>
+                        <h:commandButton id="graph-send"
+                                         action="#{beanCalculator.calc()}"
+                                         style="opacity:0"/>
+                    </h:form>
+                </div>
                 <div style="flex: 1">
-                    <h:dataTable class="result-table" id="result" var="res" value="#{beanCalculator.bigList}" style="width: 100%">
+                    <h:dataTable id="result"
+                                 class="result-table"
+                                 var="res"
+                                 value="#{beanCalculator.bigList}"
+                                 style="width:100%">
                         <h:column>
                             <f:facet name="header">X</f:facet>
                             #{res.x}
@@ -91,7 +153,8 @@
                         </h:column>
                         <h:column>
                             <f:facet name="header">Входит?</f:facet>
-                            #{res.isInside ? "Да" : "Нет"}
+<!--                            #{res.isInside ? "Да" : "Нет"}-->
+                            #{res.getIsInside() ? "Да" : "Нет"}
                         </h:column>
                         <h:column>
                             <f:facet name="header">Время</f:facet>
@@ -103,12 +166,41 @@
                         </h:column>
                     </h:dataTable>
                 </div>
-            </div></div>
-        <script type="text/javascript" src="js/script.js"/>
-        <script type="text/javascript"> redrawFigure(#{beanCalculator.r}); </script>
-        <ui:repeat value="#{beanCalculator.bigList}" var="i">
-            <script type="text/javascript"> drawDot("#{i.x}", "#{i.y}", #{i.isInside});</script>
-        </ui:repeat>
+            </div>
+        </div>
+<!--        <script type="text/javascript" src="resources/js/script.js"></script>-->
+        <h:outputScript>
+            // Initialize graph with R value
+            <ui:fragment rendered="#{beanCalculator.r != null}">
+            redrawFigure(#{beanCalculator.r});
+            </ui:fragment>
+            
+            // Draw all dots from the data list
+            <ui:fragment rendered="#{beanCalculator.bigList != null and !empty beanCalculator.bigList}">
+            var points = [
+                <ui:repeat value="#{beanCalculator.bigList}" var="i" varStatus="status">
+                {x: #{i.x}, y: #{i.y}, isInside: #{i.isInside}}<ui:fragment rendered="#{!status.last}">,</ui:fragment>
+                </ui:repeat>
+            ];
+            
+            points.forEach(function(point) {
+                drawDot(point.x, point.y, point.isInside);
+            });
+            </ui:fragment>
+        </h:outputScript>
+
+<!--        <script>-->
+<!--            // Быстрая проверка стилей-->
+<!--            console.log('CSS проверка:');-->
+<!--            console.log('1. График элемент:', document.getElementById('graph'));-->
+<!--            console.log('2. Таблица элемент:', document.getElementById('result'));-->
+<!--            console.log('3. Стили загружены:', document.styleSheets.length, 'листов');-->
+
+<!--            // Проверка PrimeFaces-->
+<!--            if (typeof PrimeFaces !== 'undefined') {-->
+<!--                console.log('4. PrimeFaces виджеты:', Object.keys(PrimeFaces.widgets));-->
+<!--            }-->
+<!--        </script>-->
     </h:body>
 </f:view>
 </html>
