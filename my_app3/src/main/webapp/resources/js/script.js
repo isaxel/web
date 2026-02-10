@@ -1,12 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-    // var rSpinnerInput = document.getElementById("main-form:rSpinner_input");
-    // if (rSpinnerInput) {
-    //     rSpinnerInput.addEventListener("change", function() {
-    //         updateRValue();
-    //     });
-    // }
-
     const catcher = document.getElementById('click_catcher');
     if (!catcher) return;
 
@@ -34,23 +27,10 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-// function getR() {
-//     const rInput = document.getElementById("main-form:rSpinner_input");
-//     if (rInput) {
-//         return parseFloat(rInput.value) || 2.0;
-//     }
-//     return 2.0;
-// }
 function getR() {
     const spinner = document.getElementById("main-form:rSpinner_input");
     return spinner ? parseFloat(spinner.value) : null;
 }
-
-// function updateRValue() {
-//     var r = getR();
-//     redrawFigure(r);
-//     document.getElementById("hidden-form:graph-r").value = r;
-// }
 
 function handleRChange() {
     const r = getR();
@@ -58,8 +38,6 @@ function handleRChange() {
         redrawFigure(r);
     }
 }
-
-/* ===== Utils ===== */
 
 function getCoords(elem) {
     const box = elem.getBoundingClientRect();
@@ -71,8 +49,6 @@ function getCoords(elem) {
         left: box.left + window.pageXOffset
     };
 }
-
-/* ===== SVG ===== */
 
 function drawOMarker(x, y) {
     deleteOMarker();

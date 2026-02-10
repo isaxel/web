@@ -43,10 +43,6 @@ html {
     justify-content: center;
 }
 
-.footer {
-    text-align: center;
-}
-
 .invert-colors {
     background: var(--bg-form) !important;
     color: var(--fg) !important;
@@ -63,7 +59,7 @@ html {
     /*background-color: var(--bg-0-h);*/
 }
 
-.box-visual, .main-structure-table {
+.box-visual {
     width: 100%;
 }
 
@@ -71,25 +67,9 @@ html {
     width: 80%;
 }
 
-.main-structure-table {
-    display: block;
-}
-
-.mew {
-    font-style: italic;
-}
-
 .main-title {
     font-size: 3rem;
     font-family: 'Jost', sans-serif;
-}
-
-.prompt-text {
-    font-size: 1.2rem;
-}
-
-.control-panel {
-    padding: 20px;
 }
 
 .text-input:hover, .text-input:focus, button:hover, .btn:hover {
@@ -107,7 +87,7 @@ html {
     transition: ease 200ms;
 }
 
-.text-input, .logo, .box-visual, button, hr, .btn {
+.text-input, .box-visual, button, hr {
     box-shadow: 5px 5px 5px 5px rgba(34, 16, 38, 0.25);
 }
 
@@ -118,15 +98,6 @@ body .ui-spinner .ui-spinner-button {
 
 body .ui-spinner .ui-spinner-button:hover {
     background: #53d735;
-}
-
-.green-slider .ui-slider-range {
-    background: mediumspringgreen;
-}
-
-.green-slider .ui-slider-handle {
-    background: mediumspringgreen;
-    border: 2px solid #121212;
 }
 
 .green-input {
@@ -143,11 +114,6 @@ body .ui-spinner .ui-spinner-button:hover {
 
 .result-table {
     box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.25);
-}
-
-.logo {
-    border-radius: 1rem;
-    margin: 25px;
 }
 
 .confirm-colors {
@@ -168,13 +134,8 @@ body .ui-spinner .ui-spinner-button:hover {
     height: 100vh;
 }
 
-button, .btn {
+button {
     margin: 5px;
-}
-
-.indent-box {
-    box-shadow: inset 5px 5px 5px 5px rgba(0, 0, 0, 0.25);
-    width: 100%;
 }
 
 .result-table {
@@ -185,27 +146,19 @@ button, .btn {
     padding: 10px;
 }
 
-.incorrect-input-notif {
-    color: var(--error);
-}
+/*.clock, .clock-date {*/
+/*    font-family: 'Jost', sans-serif;*/
+/*    text-align: center;*/
+/*}*/
 
-.clock, .clock-date {
-    font-family: 'Jost', sans-serif;
-    text-align: center;
-}
+/*.clock {*/
+/*    font-size: 6rem;*/
+/*    margin: 10px;*/
+/*}*/
 
-.clock {
-    font-size: 6rem;
-    margin: 10px;
-}
-
-.clock-date {
-    font-size: 2rem;
-}
-
-.grid-radio td {
-    padding: .5rem;
-}
+/*.clock-date {*/
+/*    font-size: 2rem;*/
+/*}*/
 
 body .ui-radiobutton .ui-radiobutton-box.ui-state-active {
     border-color: var(--primary);
@@ -232,18 +185,6 @@ body .ui-radiobutton .ui-radiobutton-box.ui-state-active .ui-icon-bullet {
 
 body .ui-radiobutton .ui-radiobutton-box.ui-state-active.ui-state-hover {
     background: var(--bg);
-}
-
-.cmdlink {
-    margin-right: 20px;
-}
-
-.cmdlink:link, .cmdlink:visited, .cmdlink:hover {
-    color: var(--bg);
-}
-
-.cmdlink:active {
-    color: var(--error);
 }
 
 .spinner .ui-spinner-button {
