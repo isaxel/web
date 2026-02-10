@@ -68,7 +68,7 @@ function drawOMarker(x, y) {
     const circle = document.createElementNS("http://www.w3.org/2000/svg", 'circle');
     circle.setAttribute('cx', (x * 20 + 150).toString());
     circle.setAttribute('cy', (-y * 20 + 150).toString());
-    circle.setAttribute('r', '8');
+    circle.setAttribute('r', '6');
     circle.setAttribute('stroke', 'rgb(174, 193, 187)');
     circle.setAttribute('stroke-width', '5');
     circle.setAttribute('fill-opacity', '0');
@@ -106,22 +106,26 @@ function redrawFigure(scale) {
     if (!f1 || !f2 || !f3) return;
 
     f1.setAttribute(
-        'checkpoints',
-        (150 - 20 * scale) + ",150 150,150 150," + (150 - 10 * scale)
+        'points',
+        "150,150 " + (150 + 10 * scale) + ", 150 150," + (150 + 20 * scale)
     );
 
     f2.setAttribute(
-        'checkpoints',
-        (150 + 20 * scale) + ",150 " +
-        (150 + 20 * scale) + "," + (150 - 10 * scale) +
-        " 150," + (150 - 10 * scale) +
-        " 150,150"
+        'points',
+        `150,150
+        ${150 + 10 * scale},150
+        ${150 + 10 * scale},${150 - 20 * scale}
+        150,${150 - 20 * scale}`
     );
 
     f3.setAttribute(
         'd',
-        "M 150 150 L " + (150 + 10 * scale) +
-        " 150 A " + (10 * scale) + " " + (10 * scale) +
-        " 0 0 1 150 " + (150 + 10 * scale) + " Z"
+        `M ${150 - 20 * scale} 150
+        L 150 150 
+        L 150 ${150 - 20 * scale} 
+        C ${150 - 10 * scale} ${150 - 20 * scale} 
+        ${150 - 20 * scale} ${150 - 10 * scale}
+        ${150 - 20 * scale} 150 
+        Z`
     );
 }

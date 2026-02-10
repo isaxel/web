@@ -40,9 +40,10 @@ public class BeanCalculator implements Serializable {
         }
     }
 
-    public void reset() {
+    public String reset() {
         dbCommunicator.clearAll();
         bigList.clear();
+        return "reset"; // redirect через faces-config
     }
 
     public String calc() {
