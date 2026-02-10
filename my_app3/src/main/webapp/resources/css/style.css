@@ -11,9 +11,10 @@
 
 :root {
     --bg: #121212;
+    --bg-form: #282828;
     --fg: #ffffff;
-    --primary: #90caf9;
-    --primary-dark: #42a5f5;
+    --primary: #90f99b;
+    --primary-dark: #53d735;
     --error: #f44336;
     --error-dark: #c62828;
     --warning: #ffa726;
@@ -29,12 +30,13 @@ html {
 
 .info-panel {
     display: flex;
-    flex-direction: row;
-    align-items: stretch;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
 }
 
 .start-panel {
+    margin-top: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -46,8 +48,8 @@ html {
 }
 
 .invert-colors {
-    background: var(--fg) !important;
-    color: var(--bg) !important;
+    background: var(--bg-form) !important;
+    color: var(--fg) !important;
 }
 
 .box-visual, .indent-box {
@@ -107,6 +109,32 @@ html {
 
 .text-input, .logo, .box-visual, button, hr, .btn {
     box-shadow: 5px 5px 5px 5px rgba(34, 16, 38, 0.25);
+}
+
+body .ui-spinner .ui-spinner-button {
+    background: mediumspringgreen;
+    color: #121212;
+}
+
+body .ui-spinner .ui-spinner-button:hover {
+    background: #53d735;
+}
+
+.green-slider .ui-slider-range {
+    background: mediumspringgreen;
+}
+
+.green-slider .ui-slider-handle {
+    background: mediumspringgreen;
+    border: 2px solid #121212;
+}
+
+.green-input {
+    background: #121212;
+    color: white;
+    border: 2px solid mediumspringgreen;
+    border-radius: 5px;
+    padding: 8px;
 }
 
 .shadow-graph {
@@ -223,6 +251,11 @@ body .ui-radiobutton .ui-radiobutton-box.ui-state-active.ui-state-hover {
     border-color: var(--primary);
 }
 
+.ui-spinner .ui-spinner-input {
+    background-color: var(--bg-form);
+    color: var(--fg);
+}
+
 .results-content {
     display: flex;
     flex-direction: row;
@@ -253,4 +286,28 @@ body .ui-radiobutton .ui-radiobutton-box.ui-state-active.ui-state-hover {
     align-items: start;
     width: 100%;
     gap: 2rem;
+}
+
+.ui-selectonemenu {
+    width: 100%;
+    background-color: white;
+    color: black;
+}
+
+.ui-selectonemenu .ui-selectonemenu-trigger {
+    background-color: var(--primary);
+    border-color: var(--primary);
+}
+
+.ui-selectonemenu-panel {
+    background-color: white;
+    color: black;
+}
+
+.ui-spinner {
+    width: 100%;
+}
+
+.ui-spinner-input {
+    text-align: center;
 }

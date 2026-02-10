@@ -1,5 +1,12 @@
 document.addEventListener("DOMContentLoaded", function () {
 
+    // var rSpinnerInput = document.getElementById("main-form:rSpinner_input");
+    // if (rSpinnerInput) {
+    //     rSpinnerInput.addEventListener("change", function() {
+    //         updateRValue();
+    //     });
+    // }
+
     const catcher = document.getElementById('click_catcher');
     if (!catcher) return;
 
@@ -27,20 +34,28 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-/* ===== Slider ===== */
-
-function handleSlide() {
-    redrawFigure(getR());
+// function getR() {
+//     const rInput = document.getElementById("main-form:rSpinner_input");
+//     if (rInput) {
+//         return parseFloat(rInput.value) || 2.0;
+//     }
+//     return 2.0;
+// }
+function getR() {
+    const spinner = document.getElementById("main-form:rSpinner_input");
+    return spinner ? parseFloat(spinner.value) : null;
 }
 
-function getR() {
-    // const r = PF("widget_main_form_superSlider").getValue();
-    // return r;
-    if (typeof PF === 'function') {
-        var widget = PF('superSlider');
-        if (widget) {
-            return widget.getValue();
-        }
+// function updateRValue() {
+//     var r = getR();
+//     redrawFigure(r);
+//     document.getElementById("hidden-form:graph-r").value = r;
+// }
+
+function handleRChange() {
+    const r = getR();
+    if (r !== null) {
+        redrawFigure(r);
     }
 }
 
