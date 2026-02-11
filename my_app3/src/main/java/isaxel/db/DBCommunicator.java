@@ -2,7 +2,6 @@ package isaxel.db;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Persistence;
-import jakarta.persistence.PersistenceContext;
 import isaxel.models.CheckPoint;
 
 import java.io.Serializable;
@@ -26,7 +25,6 @@ public class DBCommunicator implements Serializable {
     }
 
 
-    @PersistenceContext
     private EntityManager manager;
 
     public DBCommunicator() {
