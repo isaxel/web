@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ../my_app4/backend
+    container_name: "backend"
+    ports:
+      - '1260:1260'
+    volumes:
+      - ./data:/app/data
+    environment:
+      - DB_URL=jdbc:hsqldb:file:/app/data/testdb
+      - DB_USER=${DB_USER}       # Берет из .env
+      - DB_PASSWORD=${DB_PASSWORD}
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY}
+      - JWT_LIFETIME_HOURS=${JWT_LIFETIME_HOURS}
+
+  frontend:
+    build: ../my_app4/frontend
+    container_name: "frontend"
+    ports:
+      - '5173:5173'
+    depends_on:
+      - backend

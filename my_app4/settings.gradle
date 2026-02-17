@@ -1,0 +1,4 @@
+rootProject.name = 'my_app4'
+
+include 'backend'
+include 'frontend'
